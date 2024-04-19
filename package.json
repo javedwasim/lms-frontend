@@ -1,0 +1,50 @@
+{
+  "name": "lms-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.15",
+    "@mui/material": "^5.14.4",
+    "@sentry/nextjs": "^7.107.0",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.1",
+    "gapi-script": "^1.2.0",
+    "html-react-parser": "^4.2.1",
+    "lodash": "^4.17.21",
+    "material-table": "^1.69.3",
+    "moment": "^2.29.4",
+    "next": "^13.4.17",
+    "react": "18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-bootstrap": "^2.8.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-device-detect": "^2.2.3",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dnd-touch-backend": "^16.0.1",
+    "react-dom": "18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-google-login": "^5.2.2",
+    "react-icons": "^4.10.1",
+    "react-minimal-pie-chart": "^8.4.0",
+    "react-player": "^2.12.0",
+    "react-pro-sidebar": "^0.7.1",
+    "react-slick": "^0.29.0",
+    "react-star-ratings": "^2.3.0",
+    "react-to-print": "^2.14.13",
+    "sweetalert2": "^11.7.25",
+    "swr": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.5.0",
+    "typescript": "5.1.6"
+  }
+}

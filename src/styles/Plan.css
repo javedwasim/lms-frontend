@@ -1,0 +1,80 @@
+.count-tab {
+  margin-top: 50px;
+}
+.count-tab ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  position: relative;
+  padding: 0;
+}
+.count-tab ul li {
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+.count-tab ul li p span {
+  background-color: #ffffff;
+  border: 2px solid #251446;
+  width: 40px;
+  height: 40px;
+  color: #251446;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  font-weight: 800;
+}
+.count-tab ul li p span:hover {
+  background: #251446;
+  color: #fff;
+}
+p.activeTab.packageTab {
+  background: #a9b3d3;
+  /* padding: 10px; */
+  width: 50px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  margin: 0 auto 5px;
+  justify-content: center;
+  border-radius: 50px;
+  position: relative;
+  top: -6px;
+}
+p.activeTab.packageTab span {
+  background: #251446;
+  color: #fff;
+}
+
+p.pre-value.packageTab {
+  background: transparent;
+  /* padding: 10px; */
+  width: 50px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  margin: 0 auto 5px;
+  justify-content: center;
+  border-radius: 50px;
+  position: relative;
+  top: -4px;
+}
+p.pre-value.packageTab span {
+  border: none;
+  background-color: #cccccc;
+  color: #fff;
+}
+
+.count-tab ul:before {
+  position: absolute;
+  content: '';
+  width: 60%;
+  height: 2px;
+  background: #000;
+  top: 26%;
+  left: 22%;
+}

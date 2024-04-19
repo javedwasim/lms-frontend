@@ -1,0 +1,103 @@
+.tutorials-lessons {
+  background-color: #000;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.035);
+  padding: 30px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+.tutorials-lessons:hover {
+  transform: scale(1.05) !important;
+}
+.tuto-heading {
+  font-size: 28px;
+}
+.tutorials-lessons h3 {
+  color: #fff;
+  width: 78%;
+}
+.tutorials-lessons p {
+  margin: 0;
+  color: #fff;
+}
+.tutorial-percent-bar {
+  width: 95px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #ffffff42;
+}
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #ffffff;
+}
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #ffffff;
+}
+
+.red-bg {
+  background-image: linear-gradient(80deg, #cf4458, #a54458);
+}
+
+.gr-bg {
+  background-image: linear-gradient(80deg, #8cb823, #8c9223);
+}
+.blue-bg {
+  background-image: linear-gradient(80deg, #495f99, #17354a);
+}
+.cyan-bg {
+  background-image: linear-gradient(80deg, #1ca493, #1c9393);
+}
+.per-bg {
+  background-image: linear-gradient(80deg, #573282, #433282);
+}
+.workshop {
+  background-image: linear-gradient(80deg, #fcfcfc, #f3f3f3);
+  padding: 20px 20px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #cdcdcd;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+.workshop:hover {
+  opacity: 0.6 !important;
+}
+.img-icon-workshop {
+  margin-bottom: 50px;
+}
+.workshop h3 a {
+  color: #494949;
+  font-weight: 700;
+  font-size: 30px;
+  text-decoration: none;
+}
+.workshop h4 a {
+  color: #494949;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.workshop p {
+  color: #757575;
+  font-weight: 500;
+}
+.left-lessoons-section {
+  background-image: linear-gradient(80deg, #aeaeae, #9d9d9d);
+  padding: 100px 20px 10px;
+}
+.left-lessoons-section h4 a,
+.left-lessoons-section p,
+.left-lessoons-section span {
+  color: #fff;
+}
+
+#calc-body span {
+  display: none !important;
+}
+#calc-body #close_calc_button {
+  display: none !important;
+}

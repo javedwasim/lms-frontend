@@ -1,0 +1,4 @@
+.table-border tbody, th, tr, td {
+  border: 1px solid #262626;
+  padding: 4px;
+}

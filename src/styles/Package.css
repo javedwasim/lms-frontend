@@ -1,0 +1,240 @@
+.pack {
+  box-shadow: 0 0 8px #00000026;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.package-type {
+  background: linear-gradient(61.94deg, #808080 19.54%, #e6e6e6 79.7%);
+  padding: 30px 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.package-type h2 {
+  color: #fff;
+  font-weight: 700;
+  padding: 0 15px;
+  font-size: 26px;
+}
+
+.pack-title {
+  padding: 15px 0;
+  border-bottom: 1px solid #979797;
+  margin-bottom: 30px;
+}
+
+.pack-title h3 {
+  color: #251446;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0;
+}
+.pack-detail {
+  height: 350px;
+  overflow-y: scroll;
+}
+.pack-detail ul {
+  list-style: circle;
+  padding: 0 40px;
+}
+
+.pack-detail ul li img {
+  margin-right: 15px;
+}
+
+.pack-detail ul li {
+  margin-bottom: 15px;
+  color: #666666;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+}
+.select-btn button {
+  border: 2px solid #477ef0;
+  color: #477ef0;
+  font-weight: 700;
+  font-size: 18px;
+  width: 60%;
+  margin: auto;
+  padding: 5px 00px;
+  background-color: transparent;
+  border-radius: 10px;
+  margin: 20px 0 20px;
+  transition: 0.5s;
+}
+.select-btn button:hover {
+  background-color: #477ef0;
+  color: #fff;
+}
+.select-btn a {
+  display: block;
+  color: #b3b3b3;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pack-2 {
+  background: linear-gradient(61.94deg, #251446 19.56%, #2f2f67 80.07%);
+}
+.pack-3 {
+  background: linear-gradient(61.94deg, #ffbd55 19.56%, #bb00cf 80.07%);
+}
+.pack.active {
+  border: 2px solid #477ef0;
+}
+.pack.active button {
+  background-color: #477ef0;
+  color: #fff;
+}
+
+button.added {
+  background-color: #477ef0;
+  color: #fff;
+}
+
+.container-btn-next button {
+  margin-top: 30px;
+  background: #251446;
+  color: #fff;
+  border: 1px solid #251446;
+  border-radius: 10px;
+  padding: 7px 30px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+.container-btn-next button:hover {
+  background: #fff;
+  color: #251446;
+}
+
+.packages-heading h2 {
+  margin: 10px 0;
+  font-size: 40px;
+  font-weight: 700;
+}
+.top-bg {
+  line-height: 0;
+}
+.top-bg img {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+}
+.payment-detail h4 {
+  margin-bottom: 15px;
+}
+.payment-detail p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #251446;
+}
+.payment-detail p span {
+  margin: 0 5px;
+  font-weight: 600;
+}
+.payment-detail button {
+  border: 1px solid #251446;
+  color: #251446;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: transparent;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+.payment-detail button:hover {
+  background-color: #251446;
+  color: #fff;
+}
+.heading-mon {
+  border-bottom: 6px solid #251446;
+  padding: 10px 20px;
+}
+.heading-mon h3 {
+  color: #251446;
+  font-weight: 700;
+}
+.patment-detail-pay {
+  border-bottom: 6px solid #e6e6e6;
+  padding: 20px 20px 15px;
+}
+.patment-detail-pay p {
+  margin: 0 0 15px;
+  color: #251446;
+}
+.patment-detail-pay p span {
+  float: right;
+}
+.total-pay h4 {
+  text-align: end;
+  margin-top: 10px;
+  color: #251446;
+}
+.add-cart-detail h4 {
+  margin: 0 0 20px;
+  text-align: center;
+  color: #477ef0;
+}
+.add-cart-detail input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+}
+.month-dat input {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 21%;
+  border: navajowhite;
+  height: 70%;
+}
+.add-cart-detail p {
+  text-align: center;
+  font-weight: 700;
+}
+.add-cart-detail p span {
+  color: #477ef0;
+  margin: 10px 0;
+}
+.add-cart-detail button {
+  width: 100%;
+  padding: 13px 0;
+  border: none;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #477ef0;
+  color: #fff;
+  border: 2px solid #477ef0;
+  transition: 0.3s;
+}
+.add-cart-detail button:hover {
+  background: transparent;
+  color: #477ef0;
+}
+.box-sadow-none {
+  box-shadow: none;
+}
+
+.title-pc {
+  width: 180px;
+  display: inline-block;
+}
+.title-pc-1 {
+  width: 180px;
+  display: inline-block;
+}
+.title-pc-2 {
+  width: 80px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 992px) {
+  .pack-detail ul {
+    padding: 0 10px;
+  }
+}

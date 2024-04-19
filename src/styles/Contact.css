@@ -1,0 +1,31 @@
+.contact-detail {
+  box-shadow: 0 0 11px #311f4e45;
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.conct-img {
+  width: 50px;
+  margin: auto;
+}
+.conct-img img {
+  width: 100%;
+}
+.contact-detail h3 {
+  margin: 20px 0 10px;
+  font-size: 25px;
+  color: #472d76;
+}
+.contact-detail p {
+  margin: 0;
+}
+.contact-detail p a {
+  display: block;
+  color: #000;
+}
+.align-center-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

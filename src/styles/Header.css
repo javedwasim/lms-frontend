@@ -1,0 +1,118 @@
+.box-card {
+  box-shadow: 0 0 20px #00000036;
+  background-color: #fff;
+  border-radius: 20px;
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.login-button {
+  background: transparent;
+  border: 2px solid #251446;
+  border-radius: 5px;
+  padding: 6px 10px;
+  color: #251446;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.login-button-container {
+  flex-basis: 100% !important;
+}
+.login-button:hover {
+  background-color: #251446;
+  color: #fff !important;
+}
+.login-button-link {
+  background: transparent;
+  border: 2px solid #251446;
+  border-radius: 5px;
+  padding: 6px 10px;
+  color: #251446;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.login-button-link:hover {
+  background-color: #251446;
+  color: #fff !important;
+}
+
+.learn-more-btn {
+  background: transparent;
+  border: 2px solid #251446;
+  border-radius: 5px;
+  padding: 8px 20px;
+  color: #251446;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.learn-more-btn:hover {
+  background-color: #251446;
+  color: #fff !important;
+}
+.togle-menu-btn {
+  cursor: pointer;
+  display: none;
+}
+
+.login-button:hover img {
+  filter: brightness(0) invert(1);
+}
+.desktop-none {
+  display: none;
+}
+.desktop-nones {
+  display: inline;
+}
+@media screen and (max-width: 768px) {
+  .profile-name,
+  .profile-icon {
+    display: none;
+  }
+  .total-fil-ds {
+    width: 20% !important;
+    left: 0 !important;
+    margin: auto;
+  }
+  .desktop-none {
+    display: inline;
+  }
+
+  .desktop-nones {
+    display: none;
+  }
+}
+
+.rotateicons {
+  margin-right: 10px;
+  width: 4%;
+  display: inline-block;
+}
+.rotateicons img {
+  transform: rotate(180deg);
+  width: 100%;
+  margin-bottom: 2px;
+  opacity: 0.7;
+}
+.backtomycourses {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.backtomycourses:hover {
+  opacity: 0.7;
+  transition: 0.5s;
+}
+.backheading p {
+  color: black;
+  font-size: 13px;
+}
+span.navbar-brand {
+  width: 410px;
+}

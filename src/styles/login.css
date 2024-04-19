@@ -1,0 +1,235 @@
+.login-section {
+  background-image: url(/images/login-bg.png);
+}
+
+.mind-login {
+  max-width: 500px;
+  margin: 70px auto;
+}
+
+.mind-login h4 {
+  color: #fff;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.login-form {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.login-input-single {
+  border-radius: 20px !important;
+}
+
+.login-form input:nth-child(1) {
+  border-radius: 20px 20px 0 0;
+}
+
+.react-apple-signin-auth-btn-dark:hover {
+  background-color: transparent;
+  border: 1px solid #fff !important;
+}
+
+.login-form input:nth-last-child(1) {
+  border-radius: 0 0 20px 20px;
+}
+
+.last-input {
+  border-radius: 0 0 20px 20px;
+}
+
+.login-form input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 15px 25px;
+  color: #4d4d4d;
+  font-size: 19px;
+  outline: none;
+}
+
+.sign-btn button {
+  text-align: center;
+  background-color: #3fa9f5;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 50px;
+  margin-top: 20px;
+  transition: 0.5s;
+  border: 2px solid #3fa9f5;
+}
+
+.sign-btn button:hover {
+  border: 2px solid #3fa9f5;
+  background-color: transparent;
+}
+
+.mind-login p {
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.other-login a,
+.login-btn a {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0;
+  text-decoration: none;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.other-login a:hover {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.other-login a i {
+  width: 38px;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.other-login a i svg {
+  width: 100%;
+}
+
+.facebook {
+  background-color: #3a5998;
+  color: #fff;
+}
+
+.facebook:hover {
+  color: #fff;
+}
+
+.google {
+  background-color: #fff;
+  color: #000;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: 0.5s;
+}
+
+.google:hover {
+  background-color: #3d2752;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.google:hover p {
+  color: #fff !important;
+}
+
+.react-apple-signin-auth-btn-dark svg g rect {
+  fill: rgba(253, 253, 253, 0) !important;
+}
+
+.apple {
+  background-color: #000;
+  color: #fff;
+}
+
+.login-btn a {
+  width: auto;
+  color: #3fa9f5;
+  background-color: #fff;
+  padding: 10px 20px;
+  transition: 0.5s;
+}
+
+.login-btn a:hover {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.apple-auth-btn {
+  width: 100%;
+  border: none !important;
+  border-radius: 5px;
+}
+
+.google p {
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.forgot-pass-section {
+  height: 85vh;
+}
+
+.forgot-pass {
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-size: 14px;
+  transition: none;
+  /* background-color: transparent !important; */
+  border: none !important;
+  text-decoration: none;
+}
+
+.forgot-pass:hover {
+  transition: none;
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+  color: rgb(115, 106, 231);
+  font-weight: 500;
+  font-size: 14px;
+  /* background-color: transparent !important; */
+  border: none !important;
+}
+
+p.google-icon svg {
+  font-size: 20px;
+  width: 38px;
+}
+
+.apple-auth-btn svg {
+  width: 31px;
+  font-size: 36px;
+  height: 50px;
+}
+
+.login-logo img {
+  width: 100%;
+}
+
+.login-logo {
+  width: 40%;
+  margin: auto;
+}
+
+.login-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-status {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.login-height {
+  height: 50vh;
+}
