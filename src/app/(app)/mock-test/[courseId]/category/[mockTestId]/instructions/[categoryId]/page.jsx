@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { useMockTest } from '@/hooks/mockTest';
 import parse from 'html-react-parser';
 import Link from 'next/link';
@@ -11,8 +12,20 @@ import '@/styles/QuestionsStart.css';
 function Instruction({ params }) {
   const mockTestId = parseInt(params.mockTestId);
   const categoryId = parseInt(params.categoryId);
-
+  const [counter, setCounter] = useState(5);
   const { data, isLoading } = useMockTest(mockTestId, categoryId);
+  const [showInstructions, setShowInstructions] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCounter((prevCounter) => prevCounter - 1);
+    }, 1000);
+    setTimeout(() => {
+      setShowInstructions(true);
+      clearInterval(timer);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleNextClick = () => {
     window.location.href = '/mock-test/quiz';
@@ -30,11 +43,13 @@ function Instruction({ params }) {
           </p>
         </Link>
       </div>
-      {isLoading ? ( // Conditional rendering based on isLoading state
+      {isLoading || !showInstructions ? (
           <div className="loading-container">
             <div className="loading-spinner">
-              <CircularProgress />
+              <CircularProgress color="inherit" />
             </div>
+            <p>Please wait while exam Instructions is loading...</p>
+            <p>Time remaining: {counter} seconds</p>
           </div>
       ) : (
         <div className="main-instruction">

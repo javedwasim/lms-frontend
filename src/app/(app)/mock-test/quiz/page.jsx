@@ -171,7 +171,7 @@ export default function MockQuiz() {
     setReviewClicked(true);
     await submitCurrentAnswer();
 
-    const response = await reviewMockTestBeforeFinish(mockTestId, 39);
+    const response = await reviewMockTestBeforeFinish(mockTestId, categoryId);
     setReviewList(response?.review_list);
 
     setShowReviewModal(true);
@@ -525,6 +525,9 @@ export default function MockQuiz() {
             >
               {examEnded ? 'Exit Exam' : 'End Exam'}
               <MdDownloadDone fontSize={20} color="white" />
+            </button>
+            <button className="pre-btn" onClick={handleShowReview}>
+              Review <MdPreview fontSize={20} color="white" />
             </button>
           </div>
 
