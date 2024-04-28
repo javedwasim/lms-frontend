@@ -13,6 +13,8 @@ import { useMockTestCategories, useMockTestScore } from '@/hooks/mockTest';
 import { fetchMockReviewAfterFinish, startMockTest } from '@/requests/mockTest';
 
 import '@/styles/Questions.css';
+import {useCourseDetails} from "@/hooks/course";
+import Link from "next/link";
 
 export default function MockTest({ params }) {
   const router = useRouter();
@@ -21,7 +23,7 @@ export default function MockTest({ params }) {
 
   const courseId = parseInt(params.courseId);
   const mockTestId = parseInt(params.mockTestId);
-
+  const { data: orderDetails } = useCourseDetails(courseId);
   const { data: mockTestCategories } = useMockTestCategories(
     courseId,
     mockTestId
@@ -80,141 +82,144 @@ export default function MockTest({ params }) {
           </Row>
 
           <>
-            <div className="accodon-typ">
-              {mockTestCategories &&
-                mockTestCategories.map((mockCategory, i) => (
-                  <Row>
-                    <Col md={8}>
-                      <div className="ques-detail">
-                        <Accordion
-                          defaultActiveKey="0"
-                          flush
-                          alwaysOpen={true}
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <Accordion.Item eventKey={1}>
-                            <Accordion.Header>
-                              <div className="all-question-att">
-                                <p className="w-100 m-0 all-questions-select moke-test-selcet ">
-                                  <spa className="ddd">
-                                    {mockCategory?.categoryName}
-                                  </spa>
-                                  <b className="spn-btn-btn">
-                                    {mockCategory?.resume === 0 ? (
-                                      <span
-                                        className="start-btn-cate float-end start-case "
-                                        onClick={() =>
-                                          handleSetQuestions(mockCategory)
-                                        }
-                                      >
-                                        Start
-                                      </span>
-                                    ) : mockCategory?.resume === 2 ? (
-                                      <span
-                                        className="start-btn-cate  retake-time float-end "
-                                        onClick={() =>
-                                          handleSetQuestions(mockCategory)
-                                        }
-                                      >
-                                        Re-take
-                                      </span>
-                                    ) : (
-                                      <span
-                                        className="start-btn-cate resume float-end"
-                                        onClick={() =>
-                                          handleSetQuestions(mockCategory)
-                                        }
-                                      >
-                                        Resume
-                                      </span>
-                                    )}
+            {orderDetails?.is_package_purchased ? (
+                    <div className="accodon-typ">
+                      {mockTestCategories &&
+                          mockTestCategories.map((mockCategory, i) => (
+                              <Row>
+                                <Col md={8}>
+                                  <div className="ques-detail">
+                                    <Accordion
+                                        defaultActiveKey="0"
+                                        flush
+                                        alwaysOpen={true}
+                                        onClick={(e) => e.preventDefault()}>
+                                      <Accordion.Item eventKey={1}>
+                                        <Accordion.Header>
+                                          <div className="all-question-att">
+                                            <p className="w-100 m-0 all-questions-select moke-test-selcet ">
+                                              <spa className="ddd">
+                                                {mockCategory?.categoryName}
+                                              </spa>
+                                              <b className="spn-btn-btn">
+                                                {mockCategory?.resume === 0 ? (
+                                                    <span
+                                                        className="start-btn-cate float-end start-case "
+                                                        onClick={() =>
+                                                            handleSetQuestions(mockCategory)
+                                                        } >
+                                                Start
+                                                </span>
+                                                ) : mockCategory?.resume === 2 ? (
+                                                    <span
+                                                        className="start-btn-cate  retake-time float-end "
+                                                        onClick={() =>
+                                                            handleSetQuestions(mockCategory)
+                                                        } >
+                                                      Re-take
+                                                    </span>
+                                                ) : (
+                                                    <span
+                                                        className="start-btn-cate resume float-end"
+                                                        onClick={() =>
+                                                            handleSetQuestions(mockCategory)
+                                                        }
+                                                    >
+                                                    Resume
+                                                    </span>
+                                                )}
 
-                                    {mockCategory?.resume === 0 ? (
-                                      <>
-                                        <span
-                                          className="float-end start-time"
-                                          onClick={(e) => e.preventDefault()}
-                                        >
-                                          Total Q:{' '}
-                                          {mockCategory?.totalquestionCount}
-                                        </span>
-                                        <span
-                                          className="float-end start-time"
-                                          onClick={(e) => e.preventDefault()}
-                                        >
-                                          Time: {mockCategory?.time}
-                                        </span>
-                                      </>
-                                    ) : mockCategory?.resume === 2 ? (
-                                      <>
-                                        <span
-                                          className="float-end retake-time retake-total"
-                                          onClick={(e) => e.preventDefault()}
-                                        >
-                                          Total Q:{' '}
-                                          {mockCategory?.totalquestionCount}
-                                        </span>
-                                        <span
-                                          className="float-end retake-time"
-                                          onClick={(e) => e.preventDefault()}
-                                        >
-                                          Time: {mockCategory?.time}
-                                        </span>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <span
-                                          className="float-end resume"
-                                          onClick={(e) => e.preventDefault()}
-                                        >
-                                          Qs. Left:{' '}
-                                          {mockCategory?.totalquestionCount}
-                                        </span>
+                                                {mockCategory?.resume === 0 ? (
+                                                    <>
+                                                    <span
+                                                        className="float-end start-time"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                      Total Q:{' '}
+                                                      {mockCategory?.totalquestionCount}
+                                                    </span>
+                                                      <span
+                                                          className="float-end start-time"
+                                                          onClick={(e) => e.preventDefault()}
+                                                      >
+                                                        Time: {mockCategory?.time}
+                                                      </span>
+                                                    </>
+                                                ) : mockCategory?.resume === 2 ? (
+                                                    <>
+                                                    <span
+                                                        className="float-end retake-time retake-total"
+                                                        onClick={(e) => e.preventDefault()}
+                                                    >
+                                                      Total Q:{' '}
+                                                      {mockCategory?.totalquestionCount}
+                                                    </span>
+                                                      <span
+                                                          className="float-end retake-time"
+                                                          onClick={(e) => e.preventDefault()}
+                                                      >
+                                                      Time: {mockCategory?.time}
+                                                      </span>
+                                                                  </>
+                                                              ) : (
+                                                                  <>
+                                                      <span
+                                                          className="float-end resume"
+                                                          onClick={(e) => e.preventDefault()}
+                                                      >
+                                                      Qs. Left:{' '}
+                                                      {mockCategory?.totalquestionCount}
+                                                    </span>
 
-                                        <span
-                                          className="float-end resume"
-                                          onClick={(e) => e.preventDefault()}
-                                        >
-                                          Time Left: {mockCategory?.time}
-                                        </span>
-                                      </>
-                                    )}
-                                  </b>
-                                </p>
-                              </div>
-                            </Accordion.Header>
-                          </Accordion.Item>
-                        </Accordion>
-                      </div>
-                    </Col>
+                                                      <span
+                                                          className="float-end resume"
+                                                          onClick={(e) => e.preventDefault()}
+                                                      >
+                                                        Time Left: {mockCategory?.time}
+                                                      </span>
+                                                    </>
+                                                )}
+                                              </b>
+                                            </p>
+                                          </div>
+                                        </Accordion.Header>
+                                      </Accordion.Item>
+                                    </Accordion>
+                                  </div>
+                                </Col>
 
-                    <Col md={4}>
-                      <div className="your-score-cate">
-                        <span style={{ cursor: 'pointer' }}>
-                          Score:{' '}
-                          {mockTestScore?.category_data?.map(
-                            (resultCategory) => {
-                              return resultCategory?.category_id ===
-                                mockCategory?.category_id
-                                ? parseInt(
-                                    resultCategory?.your_score_in_percent
-                                  ) >= 0
-                                  ? parseInt(
-                                      resultCategory?.your_score_in_percent
-                                    ) + '%'
-                                  : ''
-                                : '';
-                            }
-                          )}
-                        </span>
-                      </div>
-                    </Col>
-                  </Row>
-                ))}
-            </div>
+                                <Col md={4}>
+                                  <div className="your-score-cate">
+                                    <span style={{ cursor: 'pointer' }}>
+                                      Score:{' '}
+                                      {mockTestScore?.category_data?.map(
+                                          (resultCategory) => {
+                                            return resultCategory?.category_id ===
+                                            mockCategory?.category_id
+                                                ? parseInt(
+                                                    resultCategory?.your_score_in_percent
+                                                ) >= 0
+                                                    ? parseInt(
+                                                    resultCategory?.your_score_in_percent
+                                                ) + '%'
+                                                    : ''
+                                                : '';
+                                          }
+                                      )}
+                                    </span>
+                                  </div>
+                                </Col>
+                              </Row>
+                          ))}
+                    </div>
+                ) :
+                <div className="courses-img">
+                  <h2>Please unlock this course to access the Mock Test.</h2>
+                </div>
+            }
           </>
           <Row>
-            {mockTestCategories && (
+            {mockTestCategories && orderDetails?.is_package_purchased &&(
               <Col>
                 <div>
                   <button

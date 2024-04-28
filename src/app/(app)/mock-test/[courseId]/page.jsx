@@ -8,7 +8,7 @@ import Sidebar from '@/components/Dashboard/Sidebar';
 import { useAuth } from '@/hooks/auth';
 import { useMockTests } from '@/hooks/mockTest';
 import { useCourseDetails } from '@/hooks/course';
-
+import Swal from 'sweetalert2';
 import { Col, Container, Row } from 'react-bootstrap';
 
 export default function MockTest({ params }) {
@@ -18,6 +18,14 @@ export default function MockTest({ params }) {
 
   const { data: mockTests, isLoading } = useMockTests(courseId);
   const { data: orderDetails } = useCourseDetails(courseId);
+
+  const handleMockTestClick = () => {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Unlock Course',
+      text: 'Please unlock this course to access the Mock Test.',
+    });
+  };
 
   return (
     <>
@@ -47,14 +55,22 @@ export default function MockTest({ params }) {
                       mockTests.map((mockTest, i) => (
                         <Col item md={6} lg={4} sm={12}>
                           <div className="featured-courses featured-section-title mang-heigt">
-                            <div className="courses-img">
-                              <Link
-                                href={`/mock-test/${courseId}/category/${mockTest.id}`}
-                              >
-                                <img src={mockTest?.image} alt-bg img />
-                              </Link>
-                            </div>
-
+                            {orderDetails?.is_package_purchased ? (
+                              <div className="courses-img">
+                                <Link
+                                  href={`/mock-test/${courseId}/category/${mockTest.id}`}
+                                >
+                                  <img src={mockTest?.image} alt-bg img />
+                                </Link>
+                              </div>
+                            ) :
+                                <div className="courses-img">
+                                  <img src={mockTest?.image} alt-bg img onClick={() => {
+                                    handleMockTestClick();
+                                  }}
+                                  />
+                                </div>
+                            }
                             <h3>
                               {mockTest?.name?.substr(0, 40)}
                               {mockTest?.name?.substring(40) ? <>....</> : ''}
