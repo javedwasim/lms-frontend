@@ -80,7 +80,6 @@ export default function MockTest({ params }) {
               </div>
             </Col>
           </Row>
-
           <>
             {orderDetails?.is_package_purchased ? (
                     <div className="accodon-typ">
