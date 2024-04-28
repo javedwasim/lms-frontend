@@ -29,16 +29,18 @@ import { useAuth } from '@/hooks/auth';
 import { useCourseDetails } from '@/hooks/course';
 import { useCourseQuestions } from '@/hooks/questions';
 import { deleteQuiz } from '@/requests/quiz';
+import axios from "axios";
 
 export default function QuestionsPage({ params }) {
   const id = parseInt(params.id);
-
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const router = useRouter();
   const pathname = usePathname();
 
   const { user } = useAuth({ middleware: 'auth' });
 
   const [questionsFilter, setQuestionsFilter] = useState('all');
+  const [quizNote, setQuizNote] = useState('');
 
   const [selectedSubcategories, setSelectedSubcategories] = useState([]);
 
@@ -74,6 +76,24 @@ export default function QuestionsPage({ params }) {
 
     router.push(`${pathname}/start`);
   };
+
+  const fetchQuestionNote = async () => {
+    try {
+      const response = await axios.get(
+          `${baseUrl}/api/question_notes/${id}`
+      );
+      const newData = response.data;
+      console.log(newData);
+      setQuizNote(newData.quize_note);
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuestionNote(); // Fetching quiz note when component mounts
+  }, []);
+
 
   const handleSmartStudy = async () => {
     const response = await fetchSmartStudyQuestions(id);
@@ -240,7 +260,6 @@ export default function QuestionsPage({ params }) {
                   </span>
                 </p>
               </div>
-
               {!courseDetails?.is_package_purchased && (
                 <Col md={4}>
                   <div className="package-full-course free-unlock">
@@ -618,6 +637,25 @@ export default function QuestionsPage({ params }) {
                   >
                     Clear
                   </button>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={{ span: 4, offset: 8 }} md={12} className="p-0">
+                {!courseDetails || !courseDetails.is_package_purchased ? (
+                      <div className="package-full-course free-unlock quiz_note_class" style={{ position: 'absolute', top: '440px' }}>
+                        <div className="title-section" style={{ marginBottom: '0px' }}>
+                          <h3>Question's Note</h3>
+                        </div>
+                        <p className="p-3 ">{quizNote}</p>
+                      </div>
+                  ): (
+                    <div className="package-full-course free-unlock quiz_note_class" style={{ position : 'absolute', top : '164px' }}>
+                      <div className="title-section" style={{marginBottom : '0px'}}>
+                        <h3>Question's Note</h3>
+                      </div>
+                      <p className="p-3">{quizNote}</p>
+                    </div>
                 )}
               </Col>
             </Row>

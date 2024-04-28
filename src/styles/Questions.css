@@ -539,3 +539,10 @@
     display: none;
   }
 }
+
+.quiz_note_class{
+  background-image: url(/images/user-test-bg.png);
+  background-size: cover;
+  color: #FFFFFF;
+  font-weight: 300;
+}
