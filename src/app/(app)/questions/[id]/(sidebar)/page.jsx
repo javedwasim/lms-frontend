@@ -93,8 +93,6 @@ export default function QuestionsPage({ params }) {
   useEffect(() => {
     fetchQuestionNote(); // Fetching quiz note when component mounts
   }, []);
-
-
   const handleSmartStudy = async () => {
     const response = await fetchSmartStudyQuestions(id);
 
