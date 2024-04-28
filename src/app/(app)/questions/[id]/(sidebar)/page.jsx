@@ -116,7 +116,6 @@ export default function QuestionsPage({ params }) {
         (acc, subcategory) => acc + subcategory.questions_count,
         0
       );
-
       setMaxQuestionsCount(questionsCount);
       setSelectedSubcategories(subcategoryIds);
     } else {
@@ -124,7 +123,6 @@ export default function QuestionsPage({ params }) {
       setSelectedSubcategories([]);
     }
   };
-
   const handleSelectCategory = (e, category) => {
     const subcategoryIds = category.sub_categories.map(
       (subcategory) => subcategory.id

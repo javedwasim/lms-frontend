@@ -233,7 +233,6 @@ export default function MockTest({ params }) {
           </Row>
         </div>
       </div>
-
       <MockResultModal
         show={showScoreModal}
         onHide={() => setShowScoreModal(false)}
