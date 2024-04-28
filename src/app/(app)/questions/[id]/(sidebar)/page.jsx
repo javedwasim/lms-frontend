@@ -36,7 +36,7 @@ export default function QuestionsPage({ params }) {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const router = useRouter();
   const pathname = usePathname();
-
+  const { data: orderDetails } = useCourseDetails(id);
   const { user } = useAuth({ middleware: 'auth' });
 
   const [questionsFilter, setQuestionsFilter] = useState('all');
@@ -616,15 +616,15 @@ export default function QuestionsPage({ params }) {
                 {/*      </div>*/}
                 {/*    </>*/}
                 {/*  )}*/}
-
-                <button
-                  className="test-start-btn float-start"
-                  onClick={handleStart}
-                  disabled={selectedQuestionsCount <= 0 || selectedQuestionsCount > 200}
-                >
-                  Next
-                </button>
-
+                {orderDetails?.is_package_purchased && (
+                    <button
+                        className="test-start-btn float-start"
+                        onClick={handleStart}
+                        disabled={selectedQuestionsCount <= 0 || selectedQuestionsCount > 200}
+                    >
+                      Next
+                    </button>
+                )}
                 {selectedSubcategories.length > 0 && (
                   <button
                     className="test-start-btn float-start"
