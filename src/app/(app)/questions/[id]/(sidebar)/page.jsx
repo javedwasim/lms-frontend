@@ -616,15 +616,15 @@ export default function QuestionsPage({ params }) {
                 {/*      </div>*/}
                 {/*    </>*/}
                 {/*  )}*/}
-                {orderDetails?.is_package_purchased && (
-                    <button
-                        className="test-start-btn float-start"
-                        onClick={handleStart}
-                        disabled={selectedQuestionsCount <= 0 || selectedQuestionsCount > 200}
-                    >
-                      Next
-                    </button>
-                )}
+
+                <button
+                    className="test-start-btn float-start"
+                    onClick={handleStart}
+                    disabled={selectedQuestionsCount <= 0 || selectedQuestionsCount > 200}
+                >
+                  Next
+                </button>
+
                 {selectedSubcategories.length > 0 && (
                   <button
                     className="test-start-btn float-start"
