@@ -213,10 +213,11 @@ export default function MockTest({ params }) {
                                 </Row>
                             ))}
                       </div>
-                  ) :
+                  ) : reviewList && !orderDetails?.is_package_purchased && (
                   <div className="courses-img">
                     <h2>Please unlock this course to access the Mock Test.</h2>
                   </div>
+              )
               }
             </>
             <Row>
