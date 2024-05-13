@@ -56,3 +56,15 @@ export const addTutorialWatchlist = async (
   });
   return data;
 };
+
+export const compelteVideoTutorial = async (
+    tutorialId,
+    courseId,
+    watchedTime
+) => {
+  const { data } = await axios.post(`/api/tutorials/${tutorialId}/video-completed`, {
+    course_id: courseId,
+    watched_time: watchedTime,
+  });
+  return data;
+};
