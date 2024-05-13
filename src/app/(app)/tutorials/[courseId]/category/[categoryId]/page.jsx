@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import Link from 'next/link';
 import moment from 'moment';
@@ -25,9 +25,16 @@ import CommentVideo from '@/components/Tutorials/CommentVideo';
 
 import { useAuth } from '@/hooks/auth';
 import { useCategoryTutorial, useTutorialComments } from '@/hooks/tutorial';
-import { addTutorialBookmark, addTutorialWatchlist } from '@/requests/tutorial';
+import { addTutorialBookmark, addTutorialWatchlist, compelteVideoTutorial } from '@/requests/tutorial';
 import { useSearchParams } from 'next/navigation';
 import Swal from 'sweetalert2';
+import {
+  Box,
+  Checkbox,
+  CircularProgress,
+  FormControlLabel,
+  FormGroup,
+} from '@mui/material';
 
 const WATCH_TIME_INTERVAL = 5000;
 
@@ -53,7 +60,7 @@ export default function TutorialCategory({ params }) {
   const [tutorialId, setTutorialId] = useState(null);
   const [videoWatchTime, setVideoWatchTime] = useState(0);
   const [player, setplayer] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const { data, mutate } = useCategoryTutorial(courseId, categoryId);
   const { data: tutorialComments } = useTutorialComments(tutorialId);
 
@@ -108,12 +115,12 @@ export default function TutorialCategory({ params }) {
       (watched_mili_eseconds._milliseconds /
         total_mili_eseconds._milliseconds) *
       100;
-
     return percent;
   };
 
   const callEndVideo = () => {
     addTutorialWatchlist(tutorialId, courseId, videoWatchTime);
+    setPieChartActiveIndex(0);
   };
 
   const showVideoData = (e, res, i) => {
@@ -133,17 +140,43 @@ export default function TutorialCategory({ params }) {
     var timeArr = hms.split(':');
     var seconds = +timeArr[0] * 60 * 60 + +timeArr[1] * 60 + +timeArr[2];
 
-    if (res.is_exist_in_plan == 1) {
-      await addTutorialWatchlist(res.tutorial_id, courseId, seconds);
-
+    setLoading(true);
+    if(res?.total_video_time === res?.my_watched_time){
+      compelteVideoTutorial(res?.tutorial_id, courseId, 0);
+      mutate();
+      setTimeout(() => {        
+        Swal.fire({
+          icon: 'success',
+          title: 'Video Status Mark InComplete',
+          timer: 2000,
+        });
+      }, 3000);
+      setLoading(false);
+    }else{
+      compelteVideoTutorial(res?.tutorial_id, courseId, res?.total_video_time);
+      mutate();
       Swal.fire({
         icon: 'success',
-        title: 'Tutorial Added to Watched List',
+        title: 'Video Status Mark as Completed',
         timer: 2000,
       });
-    } else {
-      return;
+      setLoading(false);
     }
+    
+    
+    
+    return false;    
+    // if (res.is_exist_in_plan == 1) {
+    //   await addTutorialWatchlist(res.tutorial_id, courseId, seconds);
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Tutorial Added to Watched List',
+    //     timer: 2000,
+    //   });
+    // } else {
+    //   return;
+    // }
+    
   };
 
   const getVideoTiming = () => {};
@@ -154,10 +187,30 @@ export default function TutorialCategory({ params }) {
     e.preventDefault();
 
     await addTutorialBookmark(courseId, videoData, tutorial.tutorial_id);
-
     mutate();
   };
 
+  const handleCompleteVideo = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to complete the video?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, complete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        compelteVideoTutorial(tutorialId, courseId, videoData?.total_video_time);
+        // Manually trigger a refetch of the data
+        mutate();
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);        
+      }
+    });
+  };
   return (
     <div>
       <Header />
@@ -167,8 +220,7 @@ export default function TutorialCategory({ params }) {
           is_Tutorial={'1'}
           is_Test={'1'}
           courseId={courseId}
-        />
-
+        />        
         <div className="hero-section">
           <Row>
             <Col md={12}>
@@ -178,8 +230,7 @@ export default function TutorialCategory({ params }) {
                     ? data.category_name?.charAt(0).toUpperCase() +
                       data.category_name?.slice(1)
                     : ''}
-                </h2>
-
+                </h2>                
                 <div className="mt-1 mb-4 steps-cd">
                   <Link href={`/dashboard/${courseId}`}>Progress</Link> /
                   <Link href={`/tutorials/${courseId}`}> Tutorials </Link> /{' '}
@@ -206,7 +257,16 @@ export default function TutorialCategory({ params }) {
 
           <Row>
             <Col lg={5} md={12}>
-              <div className="course-detail">
+              <div>
+                {loading && (
+                    <div className="loading-container">
+                      <div className="loading-spinner">
+                        <CircularProgress />
+                      </div>
+                    </div>
+                )}
+              </div>
+              <div className="course-detail">                
                 <ul>
                   {data && data.tutorial_list?.length > 0 ? (
                     data.tutorial_list?.map((tutorial, i) => (
@@ -221,11 +281,10 @@ export default function TutorialCategory({ params }) {
                       >
                         <div className="chart-heading">
                           <div
-                            className="chart-round"
+                            className="chart-round mt-1"
                             onClick={() => clearWatchTime(tutorial)}
-                          >
-                            <PieChart
-                              style={{ cursor: 'pointer' }}
+                          >                             
+                            <PieChart                              
                               data={[
                                 {
                                   title: 'One',
@@ -235,7 +294,7 @@ export default function TutorialCategory({ params }) {
                                       tutorial.my_watched_time
                                     )
                                   ),
-                                  color: '#fc5656',
+                                  color: '#00956e',
                                 },
                                 {
                                   title: 'Two',
@@ -248,7 +307,8 @@ export default function TutorialCategory({ params }) {
                                   color: '#fff',
                                 },
                               ]}
-                            />
+                              style={{ cursor: 'pointer', border: tutorial.total_video_time === tutorial.my_watched_time ? 'none !important' : '1px solid #fc5656', borderRadius: '50%' }}
+                            />                            
                           </div>
 
                           <div>
@@ -311,11 +371,11 @@ export default function TutorialCategory({ params }) {
                   ) : (
                     <p>Tutorial List is Empty! </p>
                   )}
-                </ul>
+                </ul>                
               </div>
             </Col>
-
-            <Col lg={7} md={12}>
+            
+            <Col lg={7} md={12}>              
               {data && data.tutorial_list?.length > 0 ? (
                 data?.is_plan_exist === '1' || videoData?.test_mode === '1' ? (
                   <div className="video-section ">
@@ -341,10 +401,12 @@ export default function TutorialCategory({ params }) {
                       width="100%"
                       height="600"
                     />
-
-                    <br />
-                    <hr />
-
+                    {videoData?.video_url && (
+                        <button className="btn btn-outline-primary" onClick={handleCompleteVideo}>
+                          {videoData?.total_video_time === videoData?.my_watched_time ? "Mark Incomplete" : "Mark as Complete"}
+                        </button>
+                    )}                    
+                    <br /><hr />
                     <h3>{data?.tutorial_list ? videoData?.pdf_heading : ''}</h3>
                     {videoData?.pdf_url && (  // Check if pdf_url is not empty
                         <>
