@@ -146,7 +146,7 @@ export default function TutorialCategory({ params }) {
       setTimeout(() => {
         Swal.fire({
           icon: 'success',
-          title: 'Video Status Mark InComplete',
+          title: 'Marked Incomplete',
           timer: 2000,
         });
       }, 3000);
@@ -156,7 +156,7 @@ export default function TutorialCategory({ params }) {
       mutate();
       Swal.fire({
         icon: 'success',
-        title: 'Video Status Mark as Completed',
+        title: 'Marked as Complete',
         timer: 2000,
       });
       setLoading(false);
@@ -187,25 +187,13 @@ export default function TutorialCategory({ params }) {
   };
 
   const handleCompleteVideo = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to complete the video?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, complete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setLoading(true);
-        compelteVideoTutorial(tutorialId, courseId, videoData?.total_video_time);
-        // Manually trigger a refetch of the data
-        mutate();
-        setTimeout(() => {
-          setLoading(false);
-        }, 3000);
-      }
-    });
+    setLoading(true);
+    compelteVideoTutorial(tutorialId, courseId, videoData?.total_video_time);
+    // Manually trigger a refetch of the data
+    mutate();
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
   };
 
   return (
@@ -295,7 +283,7 @@ export default function TutorialCategory({ params }) {
                                                   tutorial.my_watched_time
                                               )
                                           ),
-                                          color: '#00956e',
+                                          color: '#8dc52e',
                                         },
                                         {
                                           title: 'Two',
