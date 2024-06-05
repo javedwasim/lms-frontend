@@ -267,7 +267,7 @@ export default function TutorialCategory({ params }) {
                                       : 'faded-li'
                                 }
                             >
-                               <div className="chart-heading">
+                              <div className="chart-heading">
                                 <div
                                     title={'Please click on circle to Mark Video Complete or Incomplete'}
                                     className="chart-round mt-1"
@@ -298,7 +298,6 @@ export default function TutorialCategory({ params }) {
                                         },
                                       ]}
                                       style={{ cursor: 'pointer', border: tutorial.total_video_time === tutorial.my_watched_time ? 'none !important' : '1px solid #fc5656', borderRadius: '50%' }}
-                                      
                                   />
                                 </div>
 
