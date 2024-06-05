@@ -269,6 +269,7 @@ export default function TutorialCategory({ params }) {
                             >
                               <div className="chart-heading">
                                 <div
+                                    title={'Please click on circle to Mark Video Complete or Incomplete'}
                                     className="chart-round mt-1"
                                     onClick={() => clearWatchTime(tutorial)}
                                 >
