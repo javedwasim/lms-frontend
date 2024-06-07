@@ -76,7 +76,9 @@ export default function Quiz() {
 
   const [scoreData, setScoreData] = useState(null);
   const [showScoreModal, setShowScoreModal] = useState(false);
-
+  const [showFlaggedOnly, setShowFlaggedOnly] = useState(false);
+  const [showIncompleteOnly, setShowIncompleteOnly] = useState(false);
+  
   const chartoption = {
     chart: {
       type: 'bar',
@@ -293,17 +295,23 @@ export default function Quiz() {
     window.open(`/explanation`, '_blank');
   };
 
+  
   const reviewFlaggedQuestion = () => {
-    if (!flaggedQuestionId) return;
-
-    // set the question to the first flagged question
+    setShowFlaggedOnly(true);
+    setShowIncompleteOnly(false); // Ensure only one filter is applied at a time
   };
 
   const reviewIncompleteQuestion = () => {
-    if (!incompleteQuestionId) return;
-
-    // set the question to the first incomplete question
+    setShowIncompleteOnly(true);
+    setShowFlaggedOnly(false); // Ensure only one filter is applied at a time
   };
+
+
+  const filteredReviewList = showFlaggedOnly
+      ? reviewList.filter((question) => question.check_already_review === 1)
+      : showIncompleteOnly
+          ? reviewList.filter((question) => question.que_status !== 'Complete')
+          : reviewList;
 
   const handleIssueCategoryChange = (e, key, value) => {
     setIssueCategories((prev) => [...prev, { key, value }]);
@@ -661,6 +669,82 @@ export default function Quiz() {
 
           <div className="instruction_heading">
             <Modal.Title>Section</Modal.Title>
+          </div>
+          <div className="question_list">
+            <br />
+            <Row>
+              {filteredReviewList?.length !== 0
+                  ? filteredReviewList.map((question, i) => (
+                      <Fragment key={question.question_id}>
+                        <Col md={4}>
+                          <div
+                              className="review-modal-box"
+                              style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                cursor: 'pointer',
+                                padding: '3px 10px',
+                                margin: '0 0 10px',
+                                border: '1px solid #adadad',
+                                alignItems: 'center',
+                              }}
+                              onClick={(e) => getQuestionFromReview(e, question)}
+                          >
+                            Question {i + 1}
+                            {question?.check_already_review === 1 && (
+                                <div
+                                    style={{
+                                      backgroundColor: 'yellow',
+                                      color: 'white',
+                                      height: '30px',
+                                      padding: '4px 10px',
+                                      borderRadius: '20px',
+                                      textAlign: 'center',
+                                      display: 'flex',
+                                      marginTop: '2px',
+                                      marginBottom: '2px',
+                                    }}
+                                >
+                                  <h6
+                                      className="status-que"
+                                      style={{ color: 'black' }}
+                                  >
+                                    Flagged
+                                  </h6>
+                                </div>
+                            )}
+                            <div
+                                style={{
+                                  backgroundColor: question?.que_status_color,
+                                  height: '30px',
+                                  padding: '4px 10px',
+                                  borderRadius: '20px',
+                                  textAlign: 'center',
+                                  display: 'flex',
+                                  marginTop: '2px',
+                                  marginBottom: '2px',
+                                }}
+                            >
+                              {question.que_status === 'Complete' ? (
+                                  <h6
+                                      className="status-que"
+                                      style={{ color: 'white' }}
+                                  >
+                                    {question.que_status}
+                                  </h6>
+                              ) : (
+                                  <h6 className="status-que">
+                                    {question.que_status}
+                                  </h6>
+                              )}
+                            </div>
+                          </div>
+                        </Col>
+                        <br />
+                      </Fragment>
+                  ))
+                  : 'No Questions'}
+            </Row>
           </div>
 
           <div className="question_list">
