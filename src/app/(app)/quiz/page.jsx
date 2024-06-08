@@ -62,7 +62,7 @@ export default function Quiz() {
   }
 
   const [questionId, setQuestionId] = useState(firstQuestionId);
-
+  
   const { data: questionResponse, mutate } = useQuizQuestion(questionId);
 
   const [continueUntimed, setContinueUntimed] = useState(true); // previously buttonStatus
